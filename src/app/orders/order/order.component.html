@@ -1,0 +1,32 @@
+<form #form = "ngForm" autocomplete="off" *ngIf="service.formData">
+  <div class ="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Order No.</label>
+        <input name = "OrderNo" #OrderNo ="ngModel"[(ngModel)] ="service.formData.OrderNo" class="form-control">
+      </div>
+      <div class="form-group">
+          <label>Customer</label>
+          <select name = "CustomerID" #CustomerID ="ngModel"[(ngModel)] ="service.formData.CustomerID" class="form-control">
+           <option value="0">Select</option>
+          </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+        <div class="form-group">
+            <label>Payment Method</label>
+            <select name = "PMethod" #PMethod ="ngModel"[(ngModel)] ="service.formData.PMethod" class="form-control">
+                <option value="">Select</option>
+               </select>    
+          </div>
+          <div class="form-group">
+              <label>Grand Total.</label>
+              <input name = "GTotal" #GTotal ="ngModel"[(ngModel)] ="service.formData.GTotal" class="form-control">
+            </div>
+    </div>
+  </div>
+    <div class = " form-group">
+      <button type ="submit" class = "btn btn-dark"><i class= " fa fa-database"></i>Submit</button>
+    </div>
+    </form>
+    
