@@ -1,3 +1,44 @@
-<p>
-  order-item works!
-</p>
+<h4 class="display-4">Order Food Item</h4>
+<hr>
+<form #form = "ngForm" autocomplete="off">
+  <div class="form-group">
+    <label >Food Item</label>
+    <select name = "ItemID" #ItemID ="ngModel"[(ngModel)] ="formData.CustomerID" class="form-control"(change)="updatePrice($event.target)">
+        <option value="0">-Select-</option>
+        <option *ngFor = "let item of itemList" value = "{{item.itemID}}">{{item.Name}}</option>
+       </select>
+  </div>
+  <div class="form-row">
+  <div class="form-group col-md-6">
+      <label>Price.</label>
+      <div class =" input-group">
+          <div class =" input-group-prepend">
+            <div class="input-group-text">£</div>
+          </div>
+          <input name = "Price" #GPrice ="ngModel"[(ngModel)] ="formData.Price" class="form-control" readonly>
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        <label>Quantity.</label>
+        <div class =" input-group">
+      
+            <input name = "Quantity" #Quantity ="ngModel"[(ngModel)] ="formData.Quantity" class="form-control">
+          </div>
+      </div>
+    </div>
+    <div class="form-group">
+        <label>Total.</label>
+        <div class =" input-group">
+            <div class =" input-group-prepend">
+              <div class="input-group-text">£</div>
+            </div>
+            <input name = "Total" #GPrice ="ngModel"[(ngModel)] ="formData.Total" class="form-control" readonly>
+          </div>
+      </div>
+      <div class="form-group">
+          <button type ="submit" class = "btn btn-dark"><i class= " fa fa-database"></i>Submit</button>
+          <button type ="button" class = "btn btn-outline-dark ml-1"><i class= " fa fa-database"></i>Close</button>
+
+
+      </div>
+</form>
