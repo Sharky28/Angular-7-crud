@@ -5,6 +5,8 @@ import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { OrderItemComponent } from '../order-item/order-item.component';
 import { CustomerService } from 'src/app/shared/customer.service';
 import { Customer } from 'src/app/shared/customer.model';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'false-order',
@@ -17,7 +19,9 @@ export class OrderComponent implements OnInit {
 
   constructor(private service: OrderService,
     private dialog:MatDialog,
-    private customerService:CustomerService) { }
+    private customerService:CustomerService,
+    private toaster:ToastrService,
+    private router:Router) { }
 
   ngOnInit() {
     this.resetForm();
@@ -79,7 +83,11 @@ this.service.formData.GTotal= parseFloat(this.service.formData.GTotal.toFixed(2)
 
   onSubmit(form:NgForm){
     if(this.validateForm()){
-      
+      this.service.saveOrUpdateOrder().subscribe(res =>{
+        this.resetForm();
+        this.toaster.success('Submited Successfully', 'Restuarant App');
+        this.router.navigate(['/orders']);
+      })
     }
 
   }

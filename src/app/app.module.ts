@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import {FormsModule} from '@angular/forms';
@@ -11,6 +13,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { OrderComponent } from './orders/order/order.component';
 import { OrderItemComponent } from './orders/order-item/order-item.component';
 import { OrderService } from './shared/order.service';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { OrderService } from './shared/order.service';
     FormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   entryComponents:[OrderItemComponent], 
   providers: [OrderService],
