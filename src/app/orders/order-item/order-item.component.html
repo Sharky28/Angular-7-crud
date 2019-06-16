@@ -1,9 +1,12 @@
 <h4 class="display-4">Order Food Item</h4>
 <hr>
 <form #form = "ngForm" autocomplete="off">
+    <input type="hidden" name = "OrderItemID" #OrderItemID ="ngModel"[(ngModel)] ="formData.OrderItemID">
+    <input type="hidden" name = "OrderID" #OrderID ="ngModel"[(ngModel)] ="formData.OrderID">
+  <input type="hidden" name = "ItemName" #ItemName ="ngModel"[(ngModel)] ="formData.ItemName">
   <div class="form-group">
     <label >Food Item</label>
-    <select name = "ItemID" #ItemID ="ngModel"[(ngModel)] ="formData.CustomerID" class="form-control"(change)="updatePrice($event.target)">
+    <select name = "ItemID" #ItemID ="ngModel"[(ngModel)] ="formData.ItemID" class="form-control"(change)="updatePrice($event.target)">
         <option value="0">-Select-</option>
         <option *ngFor = "let item of itemList" value = "{{item.itemID}}">{{item.Name}}</option>
        </select>
@@ -15,14 +18,15 @@
           <div class =" input-group-prepend">
             <div class="input-group-text">£</div>
           </div>
-          <input name = "Price" #GPrice ="ngModel"[(ngModel)] ="formData.Price" class="form-control" readonly>
+          <input name = "Price" #Price ="ngModel"[(ngModel)] ="formData.Price" class="form-control" readonly>
         </div>
     </div>
     <div class="form-group col-md-6">
         <label>Quantity.</label>
         <div class =" input-group">
       
-            <input name = "Quantity" #Quantity ="ngModel"[(ngModel)] ="formData.Quantity" class="form-control">
+            <input name = "Quantity" #Quantity ="ngModel"[(ngModel)] ="formData.Quantity" class="form-control"
+            (keyup)="updateTotal()">
           </div>
       </div>
     </div>
@@ -32,7 +36,7 @@
             <div class =" input-group-prepend">
               <div class="input-group-text">£</div>
             </div>
-            <input name = "Total" #GPrice ="ngModel"[(ngModel)] ="formData.Total" class="form-control" readonly>
+            <input name = "Total" #Total ="ngModel"[(ngModel)] ="formData.Total" class="form-control" readonly>
           </div>
       </div>
       <div class="form-group">
