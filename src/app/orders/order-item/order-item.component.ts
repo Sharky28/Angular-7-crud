@@ -26,6 +26,7 @@ export class OrderItemComponent implements OnInit {
 
   ngOnInit() {
     this.itemService.getItemList().then(res => this.itemList = res as Item[]);
+    if(this.data.orderItemIndex == null){
     this.formData = {
       OrderItemID: null,
       OrderID: this.data.OrderID,
@@ -35,6 +36,10 @@ export class OrderItemComponent implements OnInit {
       Quantity: 0,
       Total: 0
     }
+  }
+  else
+  // making a copy to show in pop up so original is not messed with in background
+  this.formData = Object.assign({},this.orderService.orderItems[this.data.orderItemIndex]);
   }
 
   updatePrice(ctrl){
@@ -56,7 +61,10 @@ export class OrderItemComponent implements OnInit {
 
   onSubmit(form:NgForm){
     if(this.validateForm(form.value)){
+      if(this.data.orderItemIndex==null)
     this.orderService.orderItems.push(form.value);
+    else
+    this.orderService.orderItems[this.data.orderItemIndex]= form.value;
     this.dialogRef.close();
     }
   }
