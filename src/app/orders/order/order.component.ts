@@ -39,10 +39,23 @@ export class OrderComponent implements OnInit {
     dialogConfig.width="50%";
     dialogConfig.data={orderItemIndex,OrderID};
 
-this.dialog.open(OrderItemComponent,dialogConfig);
+this.dialog.open(OrderItemComponent,dialogConfig).afterClosed().subscribe(res=>{
+  this.updateGrandTotal();
+});
   }
 
   onDeleteOrderItem(oderItemID:number, i:number){
     this.service.orderItems.splice(i,1);
+    this.updateGrandTotal();
+  }
+//the reducer function is invoked on each item in the array then summed and assigned
+  updateGrandTotal(){
+    this.service.formData.GTotal=this.service.orderItems.reduce((prev,curr)=>{
+      //prev initialy 0 
+      return prev+curr.Total;
+    },0);
+
+this.service.formData.GTotal= parseFloat(this.service.formData.GTotal.toFixed(2));
+
   }
 }
