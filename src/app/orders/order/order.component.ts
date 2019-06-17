@@ -29,9 +29,9 @@ export class OrderComponent implements OnInit {
     if(orderID==null)
     this.resetForm();
     else{
-        this.service.getOrderByID(parseInt(orderID)).then(res =>{
-          this.service.formData = res.order,
-          this.service.formData = res.orderDetails; 
+        this.service.getOrderByID(parseInt(orderID)).then(res => {
+          this.service.formData = res.order;
+          this.service.orderItems = res.orderDetails; 
         })
     }
 
