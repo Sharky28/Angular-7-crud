@@ -1,3 +1,18 @@
-<p>
-    this works
-</p>
+<table class="table table-hover">
+ <thead class = "thead-light">
+     <th>#Order no.</th>
+     <th>Customer</th>
+     <th>P. Method</th>
+     <th>G. Total</th>
+     <th></th>
+ </thead>
+ <tbody>
+     <tr *ngFor = "let item of orderList">
+        <th>{{item.OrderNo}}</th>
+        <td>{{item.Customer}}</td>
+        <td>{{item.PMethod}}</td>
+        <td>{{item.GTotal}}</td>
+        <td></td>
+     </tr>
+ </tbody>
+</table>
