@@ -4,14 +4,16 @@
      <th>Customer</th>
      <th>P. Method</th>
      <th>G. Total</th>
-     <th></th>
+     <th>
+         <a class="btn btn-outline-success" routerLink="/order"><i class="fa fa-plus-square"></i> Create New</a>
+     </th>
  </thead>
  <tbody>
      <tr *ngFor = "let item of orderList">
-        <th>{{item.OrderNo}}</th>
-        <td>{{item.Customer}}</td>
-        <td>{{item.PMethod}}</td>
-        <td>{{item.GTotal}}</td>
+        <th (click)="openForEdit(item.OrderID)">{{item.OrderNo}}</th>
+        <td (click)="openForEdit(item.OrderID)">{{item.Customer}}</td>
+        <td (click)="openForEdit(item.OrderID)">{{item.PMethod}}</td>
+        <td (click)="openForEdit(item.OrderID)">{{item.GTotal}}</td>
         <td></td>
      </tr>
  </tbody>

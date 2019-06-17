@@ -27,4 +27,9 @@ getOrderList(){
   return this.http.get(environment.apiURL+ '/Order').toPromise();
 }
 
+getOrderByID(id:number): any{
+  return this.http.get(environment.apiURL+ '/Order/'+id).toPromise();
+}
+
+
 }

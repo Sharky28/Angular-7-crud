@@ -6,7 +6,7 @@ import { OrderItemComponent } from '../order-item/order-item.component';
 import { CustomerService } from 'src/app/shared/customer.service';
 import { Customer } from 'src/app/shared/customer.model';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'false-order',
@@ -21,10 +21,19 @@ export class OrderComponent implements OnInit {
     private dialog:MatDialog,
     private customerService:CustomerService,
     private toaster:ToastrService,
-    private router:Router) { }
+    private router:Router,
+    private currentRoute:ActivatedRoute) { }
 
   ngOnInit() {
+    let orderID= this.currentRoute.snapshot.paramMap.get('id');
+    if(orderID==null)
     this.resetForm();
+    else{
+        this.service.getOrderByID(parseInt(orderID)).then(res =>{
+          this.service.formData = res.order,
+          this.service.formData = res.orderDetails; 
+        })
+    }
 
     this.customerService.getCustomerList().then(res => this.customerList = res as Customer[]);
   }
