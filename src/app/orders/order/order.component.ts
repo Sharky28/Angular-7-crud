@@ -46,7 +46,8 @@ export class OrderComponent implements OnInit {
       OrderNo:Math.floor(100000+Math.random()*900000).toString(),
       CustomerID:0,
       PMethod:'',
-      Gtotal:0
+      Gtotal:0,
+      DeletedOrderItemIDs:''
      
     }; 
     this.service.orderItems=[];
@@ -64,7 +65,9 @@ this.dialog.open(OrderItemComponent,dialogConfig).afterClosed().subscribe(res=>{
 });
   }
 
-  onDeleteOrderItem(oderItemID:number, i:number){
+  onDeleteOrderItem(orderItemID:number, i:number){
+    if(orderItemID==null)
+    this.service.formData.DeletedOrderItemIDs += orderItemID+",";
     this.service.orderItems.splice(i,1);
     this.updateGrandTotal();
   }
