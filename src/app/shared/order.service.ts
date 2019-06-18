@@ -31,5 +31,7 @@ getOrderByID(id:number): any{
   return this.http.get(environment.apiURL+ '/Order/'+id).toPromise();
 }
 
-
+deleteOrder(id:number){
+  return this.http.delete(environment.apiURL+ '/Order/'+id).toPromise();
+}
 }
