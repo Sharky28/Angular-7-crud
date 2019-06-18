@@ -1,4 +1,4 @@
 export class Customer {
-    Customer:number;
+    CustomerID:number;
     Name:string;
 }

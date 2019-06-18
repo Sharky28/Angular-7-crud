@@ -3,5 +3,5 @@ export class Order {
     OrderNo:string;
     CustomerID:number;
     PMethod:string;
-    GTotal:number;
+    Gtotal:number;
 }

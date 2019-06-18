@@ -32,7 +32,7 @@ export class OrderComponent implements OnInit {
         this.service.getOrderByID(parseInt(orderID)).then(res => {
           this.service.formData = res.order;
           this.service.orderItems = res.orderDetails; 
-        })
+        });
     }
 
     this.customerService.getCustomerList().then(res => this.customerList = res as Customer[]);
@@ -46,7 +46,7 @@ export class OrderComponent implements OnInit {
       OrderNo:Math.floor(100000+Math.random()*900000).toString(),
       CustomerID:0,
       PMethod:'',
-      GTotal:0
+      Gtotal:0
      
     }; 
     this.service.orderItems=[];
@@ -70,23 +70,20 @@ this.dialog.open(OrderItemComponent,dialogConfig).afterClosed().subscribe(res=>{
   }
 //the reducer function is invoked on each item in the array then summed and assigned
   updateGrandTotal(){
-    this.service.formData.GTotal=this.service.orderItems.reduce((prev,curr)=>{
-      //prev initialy 0 
+    this.service.formData.Gtotal=this.service.orderItems.reduce((prev,curr)=>{
       return prev+curr.Total;
     },0);
 
-this.service.formData.GTotal= parseFloat(this.service.formData.GTotal.toFixed(2));
+this.service.formData.Gtotal= parseFloat(this.service.formData.Gtotal.toFixed(2));
 
   }
 
   validateForm(){
     this.isValid=true;
-    if(this.service.formData.CustomerID==0){
-      this.isValid = false;
-    }
-    else if ( this.service.orderItems.length==0){
+    if(this.service.formData.CustomerID==0)
+      this.isValid = false;   
+    else if ( this.service.orderItems.length==0)
       this.isValid=false;
-    }
     return this.isValid;
   }
 

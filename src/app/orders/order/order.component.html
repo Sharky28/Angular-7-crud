@@ -13,7 +13,7 @@
       <div class="form-group">
           <label>Customer</label>
           <select name = "CustomerID" #CustomerID ="ngModel"[(ngModel)] ="service.formData.CustomerID" class="form-control"
-          [class.is-invalid]="!isValid && formData.CustomerID==0">  
+          [class.is-invalid]="!isValid && service.formData.CustomerID==0">  
            <option value="0">-Select-</option>
            <option *ngFor="let item of customerList"value="{{item.CustomerID}}">{{item.Name}}</option>
           </select>
@@ -34,7 +34,7 @@
                   <div class =" input-group-prepend">
                     <div class="input-group-text">£</div>
                   </div>
-                  <input name = "GTotal" #GTotal ="ngModel"[(ngModel)] ="service.formData.GTotal" class="form-control" readonly>
+                  <input name = "Gtotal" #Gtotal ="ngModel"[(ngModel)] ="service.formData.Gtotal" class="form-control" readonly>
                 </div>
             </div>
     </div>
